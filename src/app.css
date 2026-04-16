@@ -1,0 +1,313 @@
+/* ─── Design Tokens ─── */
+:root {
+  --blue-header: #5b9bd5;
+  --blue-header-hover: #4a8bc4;
+  --blue-border: #4a8bc4;
+  --bg-node-body: #e8f0f8;
+  --bg-app: #f2f4f6;
+  --bg-white: #ffffff;
+  --text-dark: #1a1a2e;
+  --text-label: #444;
+  --btn-bg: #d8dfe8;
+  --btn-hover: #c4cdd8;
+  --danger: #e05c5c;
+  --danger-hover: #c94444;
+  --font-mono: 'Courier New', monospace;
+  --radius: 4px;
+  --shadow: 0 1px 3px rgba(0,0,0,0.15);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: var(--bg-app);
+  color: var(--text-dark);
+  font-size: 14px;
+}
+
+/* ─── App Shell ─── */
+.app {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.app-header {
+  margin-bottom: 20px;
+}
+
+.app-header h1 {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--blue-header);
+  letter-spacing: -0.3px;
+}
+
+.app-header .subtitle {
+  font-size: 12px;
+  color: #888;
+  margin-top: 2px;
+}
+
+.app-main {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* ─── Controls ─── */
+.controls {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 4px;
+}
+
+.ctrl-btn {
+  padding: 5px 12px;
+  background: var(--btn-bg);
+  border: 1px solid #bbc5d0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-dark);
+  transition: background 0.15s;
+}
+
+.ctrl-btn:hover { background: var(--btn-hover); }
+.ctrl-btn.danger { background: #fde8e8; border-color: #e8b0b0; color: var(--danger); }
+.ctrl-btn.danger:hover { background: #f8d0d0; }
+
+/* ─── Tree Container ─── */
+.tree-container {
+  border: 1px solid var(--blue-border);
+  border-radius: 6px;
+  overflow: hidden;
+  background: var(--bg-white);
+  box-shadow: var(--shadow);
+}
+
+/* ─── Tree Node ─── */
+.tree-node {
+  border: 1px solid var(--blue-border);
+  border-radius: 4px;
+  overflow: hidden;
+  background: var(--bg-white);
+}
+
+.tree-node + .tree-node { margin-top: 4px; }
+
+.tree-node.root-node {
+  border: none;
+  border-radius: 0;
+}
+
+/* ─── Node Header ─── */
+.tree-node-header {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  background: var(--blue-header);
+  color: #131313;
+  min-height: 36px;
+}
+
+.collapse-btn {
+  width: 24px;
+  height: 22px;
+  background: var(--btn-bg);
+  border: 1px solid #bbc5d0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: bold;
+  color: var(--text-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: background 0.1s;
+}
+
+.collapse-btn:hover { background: var(--btn-hover); }
+.collapse-btn.invisible { visibility: hidden; }
+
+.node-name {
+  flex: 1;
+  font-weight: 600;
+  font-size: 13px;
+  color: #111010;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.node-name.editable {
+  cursor: pointer;
+}
+
+.node-name.editable:hover {
+  text-decoration: underline dotted rgba(255,255,255,0.7);
+}
+
+.name-input {
+  flex: 1;
+  padding: 2px 6px;
+  border: 1px solid rgba(255,255,255,0.6);
+  border-radius: 3px;
+  font-size: 13px;
+  background: rgba(255,255,255,0.9);
+  color: var(--text-dark);
+  outline: none;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+
+.add-child-btn {
+  padding: 4px 10px;
+  background: var(--btn-bg);
+  border: 1px solid #bbc5d0;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 12px;
+  color: var(--text-dark);
+  white-space: nowrap;
+  transition: background 0.15s;
+}
+
+.add-child-btn:hover { background: var(--btn-hover); }
+
+.delete-btn {
+  width: 22px;
+  height: 22px;
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.4);
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 11px;
+  color: #070707;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.15s;
+}
+
+.delete-btn:hover {
+  background: rgba(220, 60, 60, 0.6);
+}
+
+/* ─── Node Body ─── */
+.tree-node-body {
+  padding: 6px 10px;
+  background: var(--bg-node-body);
+}
+
+/* ─── Node Data ─── */
+.tree-node-data {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 0;
+}
+
+.data-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--text-label);
+  min-width: 30px;
+}
+
+.data-input {
+  padding: 4px 8px;
+  border: 1px solid #c0c8d4;
+  border-radius: 3px;
+  font-size: 12px;
+  background: var(--bg-white);
+  color: var(--text-dark);
+  width: 200px;
+  outline: none;
+  transition: border-color 0.15s;
+}
+
+.data-input:focus {
+  border-color: var(--blue-header);
+  box-shadow: 0 0 0 2px rgba(91,155,213,0.2);
+}
+
+/* ─── Children Container ─── */
+.tree-node-children {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 6px 0 2px 0;
+}
+
+/* ─── Export Panel ─── */
+.export-panel {
+  margin-top: 4px;
+}
+
+.export-buttons {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.export-btn,
+.copy-btn,
+.download-btn {
+  padding: 6px 16px;
+  background: var(--btn-bg);
+  border: 1px solid #bbc5d0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-dark);
+  transition: background 0.15s;
+}
+
+.export-btn:hover,
+.copy-btn:hover,
+.download-btn:hover { background: var(--btn-hover); }
+
+.import-label {
+  padding: 6px 16px;
+  background: var(--btn-bg);
+  border: 1px solid #bbc5d0;
+  border-radius: var(--radius);
+  cursor: pointer;
+  font-size: 13px;
+  color: var(--text-dark);
+  transition: background 0.15s;
+  display: inline-flex;
+  align-items: center;
+}
+
+.import-label:hover { background: var(--btn-hover); }
+
+.import-error {
+  color: var(--danger);
+  font-size: 12px;
+  margin-top: 6px;
+}
+
+.export-output {
+  margin-top: 10px;
+  padding: 10px 14px;
+  background: var(--bg-white);
+  border: 1px solid #d0d8e4;
+  border-radius: var(--radius);
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: #333;
+  word-break: break-all;
+  line-height: 1.6;
+  max-height: 200px;
+  overflow-y: auto;
+}
