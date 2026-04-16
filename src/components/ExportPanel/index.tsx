@@ -7,9 +7,8 @@ interface Props {
   onImport: (node: TreeNode) => void;
 }
 
-const ExportPanel: React.FC<Props> = ({ root, onImport }) => {
+const ExportPanel: React.FC<Props> = ({ root }) => {
   const [exported, setExported] = useState<string>('');
-  const [importError, setImportError] = useState<string>('');
 
   const handleExport = () => {
     const data = sanitizeForExport(root);
@@ -24,11 +23,6 @@ const ExportPanel: React.FC<Props> = ({ root, onImport }) => {
           Export
         </button>
       </div>
-
-      {importError && (
-        <p className="import-error">{importError}</p>
-      )}
-
       {exported && (
         <div className="export-output">
           <code>{exported}</code>
